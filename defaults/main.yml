@@ -1,0 +1,23 @@
+---
+
+# Cinder
+cinder_bind_host: 0.0.0.0
+cinder_user: cinder
+cinder_pass: cinder_pass_default
+cinder_port: 8776
+cinder_protocol: http
+cinder_log_dir: /var/log/cinder
+
+# Keystone
+keystone_admin_port: 35357
+keystone_hostname: localhost
+keystone_port: 5000
+keystone_protocol: http
+
+# Database
+cinder_database_url: sqlite:////var/lib/cinder/cinder.sqlite
+
+# RabbitMQ
+rabbit_hostname: localhost
+rabbit_username: rabbit_username_default
+rabbit_pass: rabbit_pass_default

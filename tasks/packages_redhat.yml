@@ -1,0 +1,7 @@
+---
+
+- name: Install cinder service and client
+  yum: name="{{ item }}" state=present
+  with_items:
+    - openstack-cinder
+    - python-cinderclient

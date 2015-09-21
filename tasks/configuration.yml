@@ -1,0 +1,70 @@
+- name: Configure Cinder API database
+  ini_file: >
+    dest=/etc/cinder/cinder.conf
+    section=database
+    option=connection
+    value="{{ cinder_database_url }}"
+  notify:
+    - Sync cinder database
+    - Restart Cinder API
+    - Restart Cinder Scheduler
+    - Restart Cinder Volume
+
+
+- name: Configure Cinder API
+  ini_file: >
+    dest=/etc/cinder/cinder.conf
+    section="{{ item.section }}"
+    option="{{ item.option }}"
+    value="{{ item.value }}"
+  with_items:
+    - section:  DEFAULT
+      option:   rpc_backend
+      value:    rabbit
+    - section:  DEFAULT
+      option:   bind_host
+      value:    "{{ cinder_bind_host }}"
+    - section:  DEFAULT
+      option:   bind_port
+      value:    "{{ cinder_port }}"
+    - section:  DEFAULT
+      option:   rabbit_host
+      value:    "{{ rabbit_hostname }}"
+    - section:  DEFAULT
+      option:   rabbit_userid
+      value:    "{{ rabbit_username }}"
+    - section:  DEFAULT
+      option:   rabbit_password
+      value:    "{{ rabbit_pass }}"
+    - section:  DEFAULT
+      option:   log_file
+      value:    "{{ cinder_log_dir }}/api.log"
+    - section:  keystone_authtoken
+      option:   auth_uri
+      value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_port }}/v2.0"
+    - section:  keystone_authtoken
+      option:   auth_host
+      value:    "{{ keystone_hostname }}"
+    - section:  keystone_authtoken
+      option:   auth_port
+      value:    "{{ keystone_admin_port }}"
+    - section:  keystone_authtoken
+      option:   auth_protocol
+      value:    "{{ keystone_protocol }}"
+    - section:  keystone_authtoken
+      option:   admin_tenant_name
+      value:    service
+    - section:  keystone_authtoken
+      option:   admin_user
+      value:    "{{ cinder_user }}"
+    - section:  keystone_authtoken
+      option:   admin_password
+      value:    "{{ cinder_pass }}"
+    - section:  paste_deploy
+      option:   flavor
+      value:    keystone
+  notify:
+    - Restart Cinder API
+    - Restart Cinder Scheduler
+    - Restart Cinder Volume
+

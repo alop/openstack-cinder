@@ -1,0 +1,11 @@
+---
+
+- name: Install Cinder service
+  apt: name=cinder state=present
+  notify:
+    - Restart Cinder API
+    - Restart Cinder Scheduler
+    - Restart Cinder Volume
+
+- name: Install Cinder Client
+  apt: name=python-cinderclient state=present

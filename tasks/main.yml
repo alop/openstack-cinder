@@ -1,0 +1,20 @@
+---
+- meta: flush_handlers
+
+- include: facts.yml
+- include: packages.yml
+- include: configuration.yml
+
+- meta: flush_handlers
+
+- name: Enable and Start Cinder Volume
+  service: name={{ cinder_volume_service }} state=started enabled=yes
+
+- name: Enable and Start Cinder Scheduler
+  service: name={{ cinder_scheduler_service }} state=started enabled=yes
+
+- name: Enable and Start Cinder API
+  service: name={{ cinder_api_service }} state=started enabled=yes
+
+- name: Wait Cinder
+  wait_for: host="{{ cinder_hostname }}" port="{{ cinder_port }}"

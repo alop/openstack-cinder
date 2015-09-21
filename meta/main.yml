@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Abel Lopez
+  description:
+  company: Cisco Systems
+  license: Apache
+  min_ansible_version: 1.7
+  categories:
+    - cloud
+  platform:
+    - name: Ubuntu
+      versions:
+        - precise
+        - quantal
+        - raring
+        - saucy
+        - trusty
+    - name: EL
+      versions:
+        - 6
+        - 7
+dependencies: []

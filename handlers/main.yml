@@ -1,0 +1,36 @@
+---
+- name: Start Cinder API
+  service: name={{ cinder_api_service }} state=started enabled=yes
+
+- name: Start Cinder Scheduler
+  service: name={{ cinder_scheduler_service }} state=started enabled=yes
+
+- name: Start Cinder Volume
+  service: name={{ cinder_volume_service }} state=started enabled=yes
+
+- name: Restart Cinder API
+  service: name={{ cinder_api_service }} state=restarted
+
+- name: Restart Cinder Scheduler
+  service: name={{ cinder_scheduler_service }} state=restarted
+
+- name: Restart Cinder Volume
+  service: name={{ cinder_volume_service }} state=restarted
+
+- name: Reload Cinder API
+  service: name={{ cinder_api_service }} state=reloaded
+
+- name: Reload Cinder Scheduler
+  service: name={{ cinder_scheduler_service }} state=reloaded
+
+- name: Reload Cinder Volume
+  service: name={{ cinder_volume_service }} state=reloaded
+
+- name: Sync Cinder database
+  shell: cinder-manage db sync
+  sudo: yes
+  sudo_user: cinder
+  notify:
+    - Restart Cinder API
+    - Restart Cinder Scheduler
+    - Restart Cinder Volume
