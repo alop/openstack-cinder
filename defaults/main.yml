@@ -1,6 +1,7 @@
 ---
 
 # Cinder
+cinder_hostname: localhost
 cinder_bind_host: 0.0.0.0
 cinder_user: cinder
 cinder_pass: cinder_pass_default
