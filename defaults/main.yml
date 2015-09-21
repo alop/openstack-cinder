@@ -29,4 +29,4 @@ cinder_rabbit_hosts: "{{ cinder_rabbit_host }}:{{ cinder_rabbit_port }}"
 cinder_rabbit_ha_queues: False
 
 # Misc
-cinder_boostrap: true
+cinder_bootstrap: true
