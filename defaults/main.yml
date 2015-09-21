@@ -19,6 +19,14 @@ keystone_protocol: http
 cinder_database_url: sqlite:////var/lib/cinder/cinder.sqlite
 
 # RabbitMQ
-rabbit_hostname: localhost
-rabbit_username: rabbit_username_default
-rabbit_pass: rabbit_pass_default
+cinder_rabbit_userid: rabbit_pass_default
+cinder_rabbit_password: rabbit_username_default
+cinder_rabbit_virtual_host: /
+cinder_rabbit_retry_interval: 1
+cinder_rabbit_host: localhost
+cinder_rabbit_port: 5672
+cinder_rabbit_hosts: "{{ cinder_rabbit_host }}:{{ cinder_rabbit_port }}"
+cinder_rabbit_ha_queues: False
+
+# Misc
+cinder_boostrap: true

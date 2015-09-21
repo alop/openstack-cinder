@@ -63,6 +63,35 @@
     - section:  paste_deploy
       option:   flavor
       value:    keystone
+    # RabbitMQ
+    - section: DEFAULT
+      option:  rabbit_userid
+      value:   "{{ cinder_rabbit_userid }}"
+    - section: DEFAULT
+      option:  rabbit_password
+      value:   "{{ cinder_rabbit_password }}"
+    - section: DEFAULT
+      option:  rabbit_virtual_host
+      value:   "{{ cinder_rabbit_virtual_host }}"
+    - section: DEFAULT
+      option:  rabbit_retry_interval
+      value:   "{{ cinder_rabbit_retry_interval }}"
+    - section: DEFAULT
+      option:  rabbit_host
+      value:   "{{ cinder_rabbit_host }}"
+    - section: DEFAULT
+      option:  rabbit_port
+      value:   "{{ cinder_rabbit_port }}"
+    - section: DEFAULT
+      option:  rabbit_hosts
+      value:   "{{ cinder_rabbit_hosts }}"
+    - section: DEFAULT
+      option:  rabbit_ha_queues
+      value:   "{{ cinder_rabbit_ha_queues }}"
+  notify:
+    - Restart cinder API
+
+
   notify:
     - Restart Cinder API
     - Restart Cinder Scheduler

@@ -34,3 +34,4 @@
     - Restart Cinder API
     - Restart Cinder Scheduler
     - Restart Cinder Volume
+  when: cinder_bootstrap
