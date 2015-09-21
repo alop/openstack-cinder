@@ -5,7 +5,7 @@
     option=connection
     value="{{ cinder_database_url }}"
   notify:
-    - Sync cinder database
+    - Sync Cinder database
     - Restart Cinder API
     - Restart Cinder Scheduler
     - Restart Cinder Volume
